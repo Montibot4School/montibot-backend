@@ -51,10 +51,16 @@ app.post('/chat', async (req, res) => {
 
     const data = await response.json();
 
-    if (data.choices && data.choices[0]) {
+    // Log the full OpenAI response for debugging
+    console.log('OpenAI response:', JSON.stringify(data, null, 2));
+
+    if (Array.isArray(data.choices) && data.choices.length > 0 && data.choices[0].message) {
       res.json({ reply: data.choices[0].message.content });
     } else {
-      res.status(500).json({ error: 'Unexpected API response' });
+      res.status(500).json({
+        error: 'Unexpected API response structure',
+        data: data  // include full response for debugging
+      });
     }
 
   } catch (err) {
