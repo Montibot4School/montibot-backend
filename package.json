@@ -1,0 +1,15 @@
+{
+  "name": "montibot-backend",
+  "version": "1.0.0",
+  "description": "Node.js backend for Montessori chatbot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.4"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
