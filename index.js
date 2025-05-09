@@ -8,9 +8,6 @@ const port = process.env.PORT || 3000;
 app.use(cors());           // Enable CORS for all routes
 app.use(express.json());   // Enable JSON body parsing
 
-// Parse incoming JSON
-app.use(express.json());
-
 // Root route — this is the part you're adding now
 app.get('/', (req, res) => {
   res.send('Welcome to the MontiBot backend!');
