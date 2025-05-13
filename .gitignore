@@ -18,3 +18,9 @@ yarn-error.log*
 pids
 *.pid
 *.seed
+
+# Local/test/development files to ignore
+index-backup.js
+test.js
+scripts/
+data/
