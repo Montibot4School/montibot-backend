@@ -23,4 +23,6 @@ pids
 index-backup.js
 test.js
 scripts/
-data/
+# Ignore all files in data/ except embeddings.json
+data/*
+!data/embeddings.json
