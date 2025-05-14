@@ -9,5 +9,16 @@ jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Curl the Render URL
-        run: curl -m 10 https://montibot-backend.onrender.com
+       - name: Ping with retries
+  run: |
+    for i in {1..3}; do
+      echo "Attempt $i..."
+      if curl -m 10 https://montibot-backend.onrender.com; then
+        echo "✅ Success!"
+        break
+      else
+        echo "❌ Failed. Retrying in $((i*5)) seconds..."
+        sleep $((i*5))
+      fi
+    done
+
