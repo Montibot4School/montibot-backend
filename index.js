@@ -97,6 +97,8 @@ content: contextText
     });
 
     const data = await response.json();
+    console.log('🧾 Raw OpenAI response usage:', data.usage);
+
     const { prompt_tokens, completion_tokens, total_tokens } = data.usage || {};
 console.log("Token usage:", { prompt_tokens, completion_tokens, total_tokens });
 
@@ -105,7 +107,11 @@ console.log("Token usage:", { prompt_tokens, completion_tokens, total_tokens });
     console.log('OpenAI response:', JSON.stringify(data, null, 2));
 
     if (Array.isArray(data.choices) && data.choices.length > 0 && data.choices[0].message) {
-      res.json({ reply: data.choices[0].message.content });
+     res.json({
+  reply: data.choices[0].message.content,
+  usage: { prompt_tokens, completion_tokens, total_tokens }
+});
+
     } else {
       res.status(500).json({
         error: 'Unexpected API response structure',
